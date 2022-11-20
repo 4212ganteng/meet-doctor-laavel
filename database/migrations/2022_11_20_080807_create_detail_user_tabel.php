@@ -13,7 +13,7 @@ class CreateDetailUserTabel extends Migration
      */
     public function up()
     {
-        Schema::create('detail_user_tabel', function (Blueprint $table) {
+        Schema::create('detail_user', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->integer('type_user_id');

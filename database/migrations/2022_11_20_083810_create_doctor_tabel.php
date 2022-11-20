@@ -13,7 +13,7 @@ class CreateDoctorTabel extends Migration
      */
     public function up()
     {
-        Schema::create('doctor_tabel', function (Blueprint $table) {
+        Schema::create('doctor', function (Blueprint $table) {
             $table->id();
             $table->integer('specialist_id');
             $table->string('name');

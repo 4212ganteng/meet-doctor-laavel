@@ -13,7 +13,7 @@ class CreateTransactionTabel extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_tabel', function (Blueprint $table) {
+        Schema::create('transaction', function (Blueprint $table) {
             $table->id();
             $table->integer('appointment_id');
             $table->string('fee_doctor')->nullable();

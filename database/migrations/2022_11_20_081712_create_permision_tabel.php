@@ -13,7 +13,7 @@ class CreatePermisionTabel extends Migration
      */
     public function up()
     {
-        Schema::create('permision_tabel', function (Blueprint $table) {
+        Schema::create('permision', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->timestamps();

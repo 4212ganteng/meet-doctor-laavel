@@ -13,7 +13,7 @@ class CreateConfigPaymentTabel extends Migration
      */
     public function up()
     {
-        Schema::create('config_payment_tabel', function (Blueprint $table) {
+        Schema::create('config_payment', function (Blueprint $table) {
             $table->id();
             $table->string('fee');
             $table->string('vat');

@@ -13,7 +13,7 @@ class CreateSpecialistTabel extends Migration
      */
     public function up()
     {
-        Schema::create('specialist_tabel', function (Blueprint $table) {
+        Schema::create('specialist', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->string('price');
