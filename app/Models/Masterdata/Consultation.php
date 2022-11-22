@@ -31,4 +31,13 @@ class Consultation extends Model
         'updated_at',
         'deleted_at',
     ];
+
+     // appointment hasmany consul
+    // bikin function table yang di tuju
+    public function appointment()
+    {
+        // 2 parameter (path model yang di tuju), FK nya
+        return $this->hasMany('App\Models\Operational\appointment', 'consultation_id');
+    }
+
 }

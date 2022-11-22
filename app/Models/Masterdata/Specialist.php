@@ -32,4 +32,13 @@ class Specialist extends Model
         'updated_at',
         'deleted_at',
     ];
+
+     // one to many
+    
+    // bikin function table yang di tuju
+    public function doctor()
+    {
+        // 2 parameter (path model yang di tuju), FK nya
+        return $this->hasMany('App\Models\Operational\Doctor', 'specialist_id');
+    }
 }

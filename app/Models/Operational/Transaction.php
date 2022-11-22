@@ -37,4 +37,13 @@ class Transaction extends Model
         'updated_at',
         'deleted_at',
     ];
+
+      // transaction belongs to appointment
+    // bikin function table yang di tuju
+    public function appointment()
+    {
+        // parameter belongs to ada 3
+        // 3 parameter (path model yang di tuju), FK nya, primart key(id)
+        return $this->belongsTo('App\Models\Operational\appointment', 'appointment_id', 'id');
+    }
 }
