@@ -33,4 +33,20 @@ class PermisionRole extends Model
         'updated_at',
         'deleted_at',
     ];
+
+      // bikin function table yang di tuju
+      public function permision()
+      {
+          // parameter belongs to ada 3
+          // 3 parameter (path model yang di tuju), FK nya, primart key(id)
+          return $this->belongsTo('App\Models\ManagementAccess\Permision', 'permision_id', 'id');
+      }
+  
+          // bikin function table yang di tuju
+          public function role()
+          {
+              // parameter belongs to ada 3
+              // 3 parameter (path model yang di tuju), FK nya, primart key(id)
+              return $this->belongsTo('App\Models\ManagementAccess\Role', 'role_id', 'id');
+          }
 }
