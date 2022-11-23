@@ -1,3 +1,5 @@
 foreign key with migration
-
 php artisan make:migration add_foreign_keys_to_TABLE YG ADA RELASI
+
+make seeder
+ php artisan make:seeder SpecialistSeeder
