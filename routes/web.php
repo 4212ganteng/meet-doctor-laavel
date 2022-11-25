@@ -31,16 +31,24 @@ use Illuminate\Support\Facades\Route;
 //     })->name('dashboard');
 // });
 
+// kenapa ini di luar? karena dia gak perlu login/middleware
 Route::resource('/', LandingController::class);
 
-// this is middleware group (jadi untuk akses page ini harus login dulu)
-Route::group(['prefix'=> 'backsite', 'as' => 'backersite.', 'middleware'=> ['auth:sanctum', 'verified']], function (){
-    
-    
+// trhis route for frontend
+Route::group(['middleware' => ['auth:sanctum', 'verfied']], function (){
+
     // appointmen page
     Route::resource('appointment', AppointmentController::class);
 
     // payment page
 
     Route::resource('payment', PaymentController::class);
+
+});
+
+// this is middleware group (jadi untuk akses page ini harus login dulu)
+Route::group(['prefix'=> 'backsite', 'as' => 'backersite.', 'middleware'=> ['auth:sanctum', 'verified']], function (){
+    
+    return view('dashboard');
+    
 });
