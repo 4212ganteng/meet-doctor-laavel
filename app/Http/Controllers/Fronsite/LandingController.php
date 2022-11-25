@@ -23,11 +23,7 @@ use App\Models\Masterdata\Specialist;
 
 class LandingController extends Controller
 {
-        // create func construct auth midleware
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+     
 
 
     /**

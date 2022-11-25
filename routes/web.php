@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Fronsite\AppointmentController;
+use App\Http\Controllers\Fronsite\LandingController;
+use App\Http\Controllers\Fronsite\PaymentController;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,16 +17,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified'
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
+
+Route::resource('/', LandingController::class);
+
+// this is middleware group (jadi untuk akses page ini harus login dulu)
+Route::group(['prefix'=> 'backsite', 'as' => 'backersite.', 'middleware'=> ['auth:sanctum', 'verified']], function (){
+    
+    
+    // appointmen page
+    Route::resource('appointment', AppointmentController::class);
+
+    // payment page
+
+    Route::resource('payment', PaymentController::class);
 });
