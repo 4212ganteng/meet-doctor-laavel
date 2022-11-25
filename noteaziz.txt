@@ -3,3 +3,6 @@ php artisan make:migration add_foreign_keys_to_TABLE YG ADA RELASI
 
 make seeder
  php artisan make:seeder SpecialistSeeder
+
+ make controller
+ php artisan make:controller Fronsite/PaymentController --resource
