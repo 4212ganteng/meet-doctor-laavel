@@ -1,6 +1,17 @@
 <?php
 
+use App\Http\Controllers\Backsite\ConfigPaymentController;
+use App\Http\Controllers\Backsite\ConsultationController;
 use App\Http\Controllers\Backsite\DashboardController;
+use App\Http\Controllers\Backsite\DoctorController;
+use App\Http\Controllers\Backsite\HospitalPatientController;
+use App\Http\Controllers\Backsite\PermisionController;
+use App\Http\Controllers\Backsite\ReportAppointmentController;
+use App\Http\Controllers\Backsite\ReportTransactionController;
+use App\Http\Controllers\Backsite\RoleController;
+use App\Http\Controllers\Backsite\SpecialistController;
+use App\Http\Controllers\Backsite\TypeUserController;
+use App\Http\Controllers\Backsite\UserController;
 use App\Http\Controllers\Fronsite\AppointmentController;
 use App\Http\Controllers\Fronsite\LandingController;
 use App\Http\Controllers\Fronsite\PaymentController;
@@ -52,7 +63,7 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     
         Route::resource('dashboard', DashboardController::class);
         // permission
-        Route::resource('permission', PermissionController::class);
+        Route::resource('permission', PermisionController::class);
          // role
         Route::resource('role', RoleController::class);
         // user
