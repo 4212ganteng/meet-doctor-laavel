@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backsite\DashboardController;
 use App\Http\Controllers\Fronsite\AppointmentController;
 use App\Http\Controllers\Fronsite\LandingController;
 use App\Http\Controllers\Fronsite\PaymentController;
@@ -35,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/', LandingController::class);
 
 // trhis route for frontend
-Route::group(['middleware' => ['auth:sanctum', 'verfied']], function (){
+Route::group(['middleware'=> ['auth:sanctum', 'verified']], function (){
 
     // appointmen page
     Route::resource('appointment', AppointmentController::class);
@@ -49,6 +50,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verfied']], function (){
 // this is middleware group (jadi untuk akses page ini harus login dulu)
 Route::group(['prefix'=> 'backsite', 'as' => 'backersite.', 'middleware'=> ['auth:sanctum', 'verified']], function (){
     
-    return view('dashboard');
+    Route::resource('dashboard', DashboardController::class);
     
 });
