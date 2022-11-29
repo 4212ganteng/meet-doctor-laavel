@@ -48,8 +48,37 @@ Route::group(['middleware'=> ['auth:sanctum', 'verified']], function (){
 });
 
 // this is middleware group (jadi untuk akses page ini harus login dulu)
-Route::group(['prefix'=> 'backsite', 'as' => 'backersite.', 'middleware'=> ['auth:sanctum', 'verified']], function (){
+Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['auth:sanctum', 'verified']], function () {
     
-    Route::resource('dashboard', DashboardController::class);
+        Route::resource('dashboard', DashboardController::class);
+        // permission
+        Route::resource('permission', PermissionController::class);
+         // role
+        Route::resource('role', RoleController::class);
+        // user
+        Route::resource('user', UserController::class);
+
+        // type user
+        Route::resource('type_user', TypeUserController::class);
+        // specialits
+        Route::resource('specialist', SpecialistController::class);
+
+        // config payment
+        Route::resource('config_payment', ConfigPaymentController::class);
+
+        // consultation
+        Route::resource('consultation', ConsultationController::class);
+
+        // doctor
+        Route::resource('doctor', DoctorController::class);
+
+        // hospital patient
+        Route::resource('hospital_patient', HospitalPatientController::class);
+
+        // report appointment
+        Route::resource('appointment', ReportAppointmentController::class);
+
+        // report transaction
+        Route::resource('transaction', ReportTransactionController::class);
     
 });
