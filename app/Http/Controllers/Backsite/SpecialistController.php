@@ -19,7 +19,8 @@ use App\Models\Masterdata\Specialist;
 // request with method here
 use App\Http\Requests\Specialist\storespecialistRequest;
 use App\Http\Requests\Specialist\updatespecialistRequest;
-
+use Illuminate\Support\Facades\Redirect;
+use RealRashid\SweetAlert\Facades\Alert;
 
 // third party
 
@@ -42,7 +43,7 @@ class SpecialistController extends Controller
         //
         $specialist = Specialist::orderBy('created_at','desc')->get();
 
-        dd($specialist);
+        // dd($specialist);
         return view('pages.backsite.master-data.specialist.index', compact('specialist'));
     }
 
@@ -71,8 +72,10 @@ class SpecialistController extends Controller
         // store to DB
         $specialist = Specialist::create($data);
 
-        // return response
-        return aort($specialist);
+       Alert()->success('Succes message', 'successfull added specialist');
+
+    //    redirect to index specialist
+    Redirect()->route('backsite.specialist.index');
 
     }
 
@@ -82,9 +85,9 @@ class SpecialistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Specialist $specialist) //$specialist=(id)
     {
-        //
+        return view('pages.backsite.master-data.specialist.show', compact('specialist')); //kita bawa id ($specialist)
     }
 
     /**
@@ -93,9 +96,11 @@ class SpecialistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Specialist $specialist)
     {
         //
+        return view('pages.backsite.master-data.specialist.edit', compact('specialist')); //kita bawa id ($specialist)
+
     }
 
     /**
@@ -105,9 +110,24 @@ class SpecialistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+    //  call request update
+    public function update(updatespecialistRequest $request, Specialist $specialist)
     {
-        //
+        
+
+          // crete variabel Penampung for get all request
+          $data = $request->all();
+
+          // update to DB
+          $specialist->update($data);
+  
+         Alert()->success('Succes message', 'successfull update specialist');
+  
+      //    redirect to index specialist
+      Redirect()->route('backsite.specialist.index');
+  
+      
     }
 
     /**
@@ -116,8 +136,12 @@ class SpecialistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Specialist $specialist)
     {
         //
+        $specialist->delete();
+
+        Alert()->success('Succes message','succesful deleted specialist');
+        return back();
     }
 }
