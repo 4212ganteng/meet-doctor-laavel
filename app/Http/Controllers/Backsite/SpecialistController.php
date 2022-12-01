@@ -124,8 +124,8 @@ class SpecialistController extends Controller
   
          Alert()->success('Succes message', 'successfull update specialist');
   
-      //    redirect to index specialist
-      Redirect()->route('backsite.specialist.index');
+        //    redirect to index specialist
+        Redirect()->route('backsite.specialist.index');
   
       
     }
