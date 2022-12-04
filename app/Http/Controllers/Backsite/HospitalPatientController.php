@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
+use App\Models\ManagementAccess\DetailUser;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class HospitalPatientController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,12 @@ class HospitalPatientController extends Controller
      */
     public function index()
     {
-        //
+        $hospital_patient = User::whereHas('detail_user', function (Builder $query){
+            $query->where('type_user_id', 3); //hanya meload type user id 3 (pasien)
+        })->orderBy('created_at, desc')->get();
+
+        return view('pages.backsite.operational.doctor.index',compact('hospital_patient'));
+
     }
 
     /**

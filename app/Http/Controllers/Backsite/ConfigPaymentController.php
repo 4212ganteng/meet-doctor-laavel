@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ConfigPayment\UpdateconfigpaymentRequest;
+use App\Models\Masterdata\ConfigPayment;
 use Illuminate\Http\Request;
 
 class ConfigPaymentController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,8 @@ class ConfigPaymentController extends Controller
      */
     public function index()
     {
-        //
+        $configpayment = ConfigPayment::all();
+        return view('pages.backsite.master-data.config-payment.index');
     }
 
     /**
@@ -24,7 +31,7 @@ class ConfigPaymentController extends Controller
      */
     public function create()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -46,7 +53,8 @@ class ConfigPaymentController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
+        
     }
 
     /**
@@ -55,9 +63,9 @@ class ConfigPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ConfigPayment $configPayment)
     {
-        //
+        return view('pages.backsite.master-data.config-payment.edit',compact('configpayment'));
     }
 
     /**
@@ -67,9 +75,16 @@ class ConfigPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateconfigpaymentRequest $request, ConfigPayment $config_payment)
     {
-        //
+        // get request update
+        $data = $request->all();
+
+        // update to db
+
+        $config_payment->update($data);
+        alert()->success('succes message', 'success update config payment');
+        return redirect()->route('backsite.config_payment.index');
     }
 
     /**
@@ -80,6 +95,6 @@ class ConfigPaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        abort(404);
     }
 }

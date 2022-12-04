@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
+use App\Models\ManagementAccess\Permision;
 use Illuminate\Http\Request;
 
 class PermisionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,9 @@ class PermisionController extends Controller
      */
     public function index()
     {
-        //
+        $permision = Permision::orderBy('id', 'asc');
+
+        return view('pages.backsite.management-access.permision.index');
     }
 
     /**
@@ -24,7 +32,7 @@ class PermisionController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
