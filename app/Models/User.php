@@ -70,6 +70,14 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+
+    // many 2 many after middleware
+
+    public function role(){
+        return $this->belongsToMany('App\Models\ManagementAccess\Role');
+    }
+    // end role
+
      // user hasmany appointment
     // bikin function table yang di tuju
     public function appointment()

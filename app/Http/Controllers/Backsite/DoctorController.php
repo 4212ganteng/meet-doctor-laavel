@@ -11,7 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 // use everyting here
 // for handle auth
 use auth;
-// use Gate;
+//use this after set middleware on auth gates
+use Gate;
 
 // call model here, yang mau di tampilin
 use App\Models\Operational\Doctor;
@@ -87,6 +88,9 @@ class DoctorController extends Controller
      */
     public function show(Doctor $doctor)
     {
+
+        // use this after set midleware on auth gates
+        abort_if(Gate::denise('Doctor_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return view('pages.backsite.operational.doctor.show', compact('doctor'));
     }
 
@@ -96,9 +100,11 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctor $doctor)
+    public function edit(Doctor $doctor)    
     {
-        
+          // use this after set midleware on auth gates
+          abort_if(Gate::denise('Doctor_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         // select 2(milih specialist apa) order bay name asc
         $specialist = Specialist::orderBy('name','asc')->get();
         return view('pages.backsite.operational.doctor.edit', compact('doctor','specialist')); //bawa 2 data model (doctor dan specialist id)
@@ -135,6 +141,9 @@ class DoctorController extends Controller
      */
     public function destroy(Doctor$doctor)
     {
+          // use this after set midleware on auth gates
+          abort_if(Gate::denise('Doctor_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         //delete paksa
         $doctor->forceDelete();
 

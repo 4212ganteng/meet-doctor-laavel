@@ -26,7 +26,7 @@ class HospitalPatientController extends Controller
             $query->where('type_user_id', 3); //hanya meload type user id 3 (pasien)
         })->orderBy('created_at, desc')->get();
 
-        return view('pages.backsite.operational.doctor.index',compact('hospital_patient'));
+        return view('pages.backsite.operational.hospital-patient.index',compact('hospital_patient'));
 
     }
 

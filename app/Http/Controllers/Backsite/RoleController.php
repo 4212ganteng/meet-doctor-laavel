@@ -3,10 +3,19 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Role\StoreroleRequest;
+use App\Http\Requests\Role\UpdateroleRequest;
+use App\Models\ManagementAccess\Permision;
+use App\Models\ManagementAccess\PermisionRole;
+use App\Models\ManagementAccess\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $role = Role::orderBy('created_at', 'desc')->get();
+        return view('pages.backsite.management-access.role.index');  
     }
 
     /**
@@ -24,7 +34,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -33,9 +43,13 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreroleRequest $request)
     {
-        //
+        $data = $request->all();
+
+        $role = Role::create($data);
+        alert()->success('success message', 'success store role');
+        return redirect()->route('backsite.role.index');
     }
 
     /**
@@ -44,9 +58,12 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
-        //
+        // why use load orm?
+        // jadi kalo kita klik role nya nanti akan d tunjukin permision apa yang dia punya
+        $role->load('permision');
+        return view('pages.backsite.management-access.role.show', compact('role'));
     }
 
     /**
@@ -55,9 +72,12 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+        // tampilin semua permision
+        $permision = Permision::all();
+        $role->load('permision');
+        return view('pages.backsite.management-access.role.edit', compact('permision','role'));
     }
 
     /**
@@ -67,9 +87,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateroleRequest $request, Role $role)
     {
-        //
+      $role->update($request->all());
+      $role->permision()->sync($request->input('permision',[]));
+      alert()->success('success message','success update role');
+      return redirect()->route('backsite.role.index');
+
     }
 
     /**
@@ -78,8 +102,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+        $role->forceDelete();
+        return back();
     }
 }

@@ -5,6 +5,9 @@ namespace App\Http\Requests\Doctor;
 // declare path model (bahwa request ini untuk model User)
 use App\Models\Operational\Doctor;
 
+//use this after set middleware on auth gates
+use Gate;
+
 // request from form
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -20,6 +23,10 @@ class StoredoctorRequest extends FormRequest
      */
     public function authorize()
     {
+
+          // use this after set midleware on auth gates
+          abort_if(Gate::denise('Doctor_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         // change to true, cause midle ware we set on request
         return true;
     }

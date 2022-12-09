@@ -32,6 +32,20 @@ class Role extends Model
         'deleted_at',
     ];
 
+
+
+// after set middleware
+// many 2 many
+public function user(){
+    return $this->belongsToMany(User::class);
+}
+
+public function permision(){
+    return $this->belongsToMany('App\Models\ManagementAccess\Permision');
+}
+
+// end many 2 many  after middlewaree
+
     public function role_user()
     {
         // 2 parameter (path model yang di tuju), FK nya

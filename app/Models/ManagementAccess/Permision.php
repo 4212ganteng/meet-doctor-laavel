@@ -32,6 +32,14 @@ class Permision extends Model
         'deleted_at',
     ];
 
+
+    // many 2 many after middleware
+
+    public function role(){
+        return $this->belongsToMany('App\Models\ManagementAccess\Role');
+    }
+    // end role
+
     public function permision_role()
     {
         // 2 parameter (path model yang di tuju), FK nya
