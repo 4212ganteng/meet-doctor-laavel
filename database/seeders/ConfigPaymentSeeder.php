@@ -2,13 +2,11 @@
 
 namespace Database\Seeders;
 
-// imp models
-
-use App\Models\Masterdata\ConfigPayment;
-
-// imp thiscode
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
+use App\Models\MasterData\ConfigPayment;
+use Illuminate\Support\Facades\DB;
 
 class ConfigPaymentSeeder extends Seeder
 {
@@ -19,16 +17,17 @@ class ConfigPaymentSeeder extends Seeder
      */
     public function run()
     {
-        // create data her
+        // create data here
         $config_payment = [
             [
-                'fee' => '150000', 
-                'vat' => '20', //percent,
+                'fee' => '150000',
+                'vat' => '20', // vat is percentage
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-            ]
-
+            ],
         ];
+
+        // this array $config_payment will be insert to table 'config_payment'
         ConfigPayment::insert($config_payment);
     }
 }

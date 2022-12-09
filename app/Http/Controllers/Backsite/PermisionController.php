@@ -43,7 +43,7 @@ class PermisionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -54,7 +54,8 @@ class PermisionController extends Controller
      */
     public function show($id)
     {
-        //
+        return abort(404);
+        
     }
 
     /**
@@ -65,7 +66,8 @@ class PermisionController extends Controller
      */
     public function edit($id)
     {
-        //
+        return abort(404);
+        
     }
 
     /**
@@ -77,7 +79,8 @@ class PermisionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return abort(404);
+        
     }
 
     /**
@@ -88,6 +91,7 @@ class PermisionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return abort(404);
+        
     }
 }

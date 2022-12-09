@@ -5,10 +5,10 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\MasterData\Consultation;
+use App\Models\ManagementAccess\Role;
 use Illuminate\Support\Facades\DB;
 
-class ConsultationSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,26 +17,34 @@ class ConsultationSeeder extends Seeder
      */
     public function run()
     {
-        // create data here
-        $consultation = [
+        $role = [
             [
-                'name' => 'Jantung Sesak',
+                'title'      => 'Super Admin', // 1
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Tekanan Darah Tinggi',
+                'title'      => 'Admin', // 2
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Gangguan Irama Jantung',
+                'title'      => 'Staff Hospital', // 3
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'title'      => 'Doctor', // 4
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'title'      => 'Patient', // 5
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
         ];
 
-        // this array $consultation will be insert to table 'consultation'
-        Consultation::insert($consultation);
+        Role::insert($role);
     }
 }
