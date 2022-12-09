@@ -72,8 +72,7 @@ class AppointmentController extends Controller
      */
     public function show($id)
     {
-        //
-        return abort(404);
+        // return view('pages.fronsite.appointment.index')
 
         
     }

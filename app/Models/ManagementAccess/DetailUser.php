@@ -31,6 +31,7 @@ class DetailUser extends Model
         'contact',
         'photo',
         'gender',
+        'age',
         // date kita declare filable karena di isi lagi oleh user. di atas kita hanya set input nya wajib type date
         'created_at',
         'updated_at',

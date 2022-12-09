@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\ManagementAccess\Permision;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\ManagementAccess\Permission;
 use App\Models\ManagementAccess\Role;
 use Illuminate\Support\Facades\DB;
 
@@ -19,8 +19,8 @@ class PermissionRoleSeeder extends Seeder
     public function run()
     {
         // for super admin
-        $admin_permissions = Permission::all();
-        Role::findOrFail(1)->permission()->sync($admin_permissions->pluck('id'));
+        $admin_permissions = Permision::all();
+        Role::findOrFail(1)->permision()->sync($admin_permissions->pluck('id'));
 
         // get permission simple for admin
         $user_permissions = $admin_permissions->filter(function ($permission) {
@@ -28,6 +28,6 @@ class PermissionRoleSeeder extends Seeder
         });
 
         // for admin
-        Role::findOrFail(2)->permission()->sync($user_permissions);
+        Role::findOrFail(2)->permision()->sync($user_permissions);
     }
 }

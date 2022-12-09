@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ManagementAccess\Permision;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -272,6 +273,6 @@ class PermissionSeeder extends Seeder
             ],
         ];
 
-        Permission::insert($permission);
+        Permision::insert($permission);
     }
 }
